@@ -5,9 +5,9 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
-var jwt = require("jsonwebtoken");
+var jwt = require("jsonwebtoken"); 
 var bcrypt = require("bcryptjs");
-const secretKey = "shoparoowebapitoauthenticateusers";
+const secretKey = "shoparoowebapitoauthenticateusers";  
 
 module.exports = {
 
@@ -21,7 +21,7 @@ module.exports = {
             if (err) return res.serverError(err);
 
             if (user) {
-                const msg = 'Existing user found with email: ' + user.email;
+                const msg = 'Existing user found with email : ' + user.email;
                 Log(msg);
                 return res.json(msg);
             }
@@ -88,7 +88,7 @@ module.exports = {
      * @param req
      * @param res
      */
-    token: function (req, res) {
+    token: function (req, res) { 
         User.findOne(req.user.id).exec(function callback(error, user) {
             if (error) return res.serverError(error);
             if (!user) return res.serverError("User not found");
