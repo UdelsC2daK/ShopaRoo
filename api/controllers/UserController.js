@@ -75,7 +75,7 @@ module.exports = {
                 });
 
                 //return the token here
-                res.ok(token);
+                res.ok(token); 
             });
 
         });
