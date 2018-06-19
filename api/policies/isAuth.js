@@ -19,9 +19,9 @@ module.exports = function (req, res, next) {
     //verify if this token was from us or not
     jwt.verify(bearerToken, secretKey, function (err, decoded) {
       if (err) {
-        sails.log("verification error", err);
+        sails.log("verification error " + err.name);
         if (err.name === "TokenExpiredError")
-          return res.forbidden("Session timed out, please login again");
+          return res.forbidden("Session expired at "+err.expiredAt+", please login again");
         else
           return res.forbidden("Error authenticating, please login again");
       }

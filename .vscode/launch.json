@@ -8,13 +8,14 @@
             "type": "node",
             "request": "attach",
             "name": "Attach",
-            "port": 1337
+            "port": 1337,
+            "protocol": "inspector"
         },
         {
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}\\app.js",
+            "program": "${workspaceRoot}/app.js",
         }
     ]
 }
