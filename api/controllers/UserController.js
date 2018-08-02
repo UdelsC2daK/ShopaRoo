@@ -10,12 +10,14 @@ var bcrypt = require("bcryptjs");
 const secretKey = "shoparoowebapitoauthenticateusers";  
 
 module.exports = {
-
+    
+  
     create: async function (req, res) {
+        
         Log('Attempting to create a new user with email: ' + req.body.email);
 
         var findCriteria = { email: req.body.email };
-        var recordToCreate = { name: req.body.name, email: req.body.email, password: req.body.password };
+        var recordToCreate = { name: req.body.name, email: req.body.email, password: req.body.password, phone: req.body.phone };
 
         User.findOne(findCriteria).exec(function (err, user) {
             if (err) return res.serverError(err);
@@ -94,7 +96,7 @@ module.exports = {
             if (!user) return res.serverError("User not found");
 
             var token = jwt.sign(user.toJSON(), secretKey, {
-                expiresIn: '5s'
+                expiresIn: '5m'
             });
             res.ok(token);
         });

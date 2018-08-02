@@ -10,10 +10,11 @@
     "bcryptjs": "^2.4.3",
     "jsonwebtoken": "^8.3.0",
     "sails": "^1.0.2",
-    "sails-hook-orm": "^2.0.0-16",
-    "sails-hook-sockets": "^1.4.0",
+    "sails-hook-orm": "^2.1.0",
+    "sails-hook-sockets": "^1.5.3",
     "sails-hook-validation": "^0.4.7",
-    "sails-mongo": "^1.0.1"
+    "sails-mongo": "^1.0.1",
+    "twilio": "^3.18.0"
   },
   "devDependencies": {
     "@sailshq/eslint": "^4.19.3"

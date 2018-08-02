@@ -10,7 +10,12 @@ var bcrypt = require("bcryptjs");
 module.exports = {
 
   attributes: {
-    name: {
+    userId: {
+      type: 'string',
+      required: true,
+      unique: true,
+    },
+    userName: {
       type: 'string',
       required: true
     },
@@ -25,10 +30,21 @@ module.exports = {
       isEmail: true,
       required: true
     },
+    phone: {
+      type: 'string',
+      unique: true,
+      required: true
+    },
     password: {
       type: 'string',
       required: true
     },
+
+    // Add a reference to Pets
+    userGroups: {
+      collection: 'usergroup',
+      via: 'owner'
+    }
 
   },
 
@@ -60,7 +76,7 @@ module.exports = {
    * before saving
    * @param values
    * @param cb
-  */
+   */
   beforeCreate: function (user, next) {
     if (user.password) {
       bcrypt.genSalt(10, function (err, salt) {
@@ -75,5 +91,5 @@ module.exports = {
         });
       });
     }
-  } 
- };
+  }
+};
