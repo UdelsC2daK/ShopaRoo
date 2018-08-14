@@ -26,23 +26,21 @@ module.exports = {
     },
     email: {
       type: 'string',
-      unique: true,
       isEmail: true,
-      required: true
+      unique: true
     },
     phone: {
       type: 'string',
-      unique: true,
-      required: true
+      unique: true
     },
     password: {
       type: 'string',
-      required: true
+      required: false
     },
 
     // Add a reference to Pets
-    userGroups: {
-      collection: 'usergroup',
+    Groups: {
+      collection: 'group',
       via: 'owner'
     }
 
@@ -57,16 +55,12 @@ module.exports = {
    * sails-hook-validation dependency
    */
   validationMessages: { //hand for i18n & l10n
-    name: {
-      required: 'Name is required'
+    userName: {
+      required: 'Username is required'
     },
     email: {
       email: 'Provide valid email address',
-      required: 'Email is required',
       unique: 'This email is already existing'
-    },
-    password: {
-      required: 'Password is required'
     }
   },
 
@@ -76,7 +70,7 @@ module.exports = {
    * before saving
    * @param values
    * @param cb
-   */
+   
   beforeCreate: function (user, next) {
     if (user.password) {
       bcrypt.genSalt(10, function (err, salt) {
@@ -91,5 +85,10 @@ module.exports = {
         });
       });
     }
+  },*/
+
+  afterCreate: function (user, next) {
+
   }
+
 };

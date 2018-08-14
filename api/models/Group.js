@@ -8,22 +8,46 @@
 module.exports = {
 
   attributes: {
-
+    userGroupId: {
+      type: 'string',
+      unique: true,
+    },
+    userId: {
+      type: 'string',
+      required: true
+    },
     groupId: {
       type: 'string',
       required: true,
-      unique: true,
     },
     groupName: {
       type: 'string',
       required: true
     },
-    
+
     // Add a reference to UserGroup
     owner: {
-      model: 'usergroup'
-    }  
+      model: 'user'
+    }
+  },
+  
+  beforeCreate: function (group, next) {
+    group.userGroupId = group.userId + group.groupId;
+    next();
   },
 
-};
+  /**
+   * this holds our validation message by
+   * sails-hook-validation dependency
+   */
+  validationMessages: {
+    groupName: {
+      required: 'Group name is required'
+    },
+    groupId: {
+      required: 'Group Id is required'
+    }
+  },
 
+
+};
